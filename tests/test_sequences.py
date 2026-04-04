@@ -1,3 +1,5 @@
+import inspect
+import sequences as seq_module
 import pytest
 from sequences import (
     squares, only_positive, product, sum_of_evens,
@@ -27,6 +29,7 @@ def test_sum_of_evens():
     assert sum_of_evens((1, 2, 3, 4, 5, 6)) == 12
     assert sum_of_evens((1, 3, 5)) == 0
     assert sum_of_evens((2, 4)) == 6
+    assert sum_of_evens(()) == 0
 
 
 def test_words_longer_than():
@@ -49,3 +52,15 @@ def test_pipeline():
     assert pipeline((1, 2, 3, 4, 5)) == 35
     assert pipeline((2, 4, 6)) == 0
     assert pipeline((1, 3)) == 10
+    assert pipeline(()) == 0
+
+
+def test_no_loops():
+    fns = ['squares', 'only_positive', 'product', 'sum_of_evens',
+           'words_longer_than', 'upper_words', 'max_by_length', 'pipeline']
+    for name in fns:
+        src = inspect.getsource(getattr(seq_module, name))
+        for keyword in ['for ', 'while ']:
+            assert keyword not in src, (
+                f"{name}: запрещено использовать '{keyword.strip()}' — только map/filter/reduce"
+            )
