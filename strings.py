@@ -16,7 +16,7 @@ def reverse_words(s):
 
 def is_palindrome(s):
     """Проверяет, является ли строка палиндромом. Регистр не важен."""
-    return s.lower()[::-1] == s.lower()
+    return s.lower().replace(" ","") == s.lower().replace(" ","")[::-1]
 
 
 def capitalize_words(s):

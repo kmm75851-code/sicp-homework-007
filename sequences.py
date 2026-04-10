@@ -38,7 +38,7 @@ def product(seq):
 
     Подсказка: reduce(mul, seq)
     """
-    return reduce(mul, seq)
+    return reduce(mul, seq, 1)
 
 
 

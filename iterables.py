@@ -82,19 +82,24 @@ class Cycle:
     """
     def __init__(self, seq):
         self.seq = seq
-        self.index = 0
 
     def __iter__(self):
-        return self
+        return self.CycleIterator(self.seq)
 
-    def __next__(self):
-        if not self.seq:
-            raise StopIteration  
+    class CycleIterator:
+        def __init__(self, seq):
+            self.seq = seq
+            self.index = 0
 
-        value = self.seq[self.index]
-        self.index = (self.index + 1) % len(self.seq)
-        return value
+        def __iter__(self):
+            return self
 
+        def __next__(self):
+            if not self.seq:
+                raise StopIteration
+            value = self.seq[self.index]
+            self.index = (self.index + 1) % len(self.seq)
+            return value
 
 class LazyMap:
     """

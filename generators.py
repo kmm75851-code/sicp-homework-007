@@ -35,7 +35,7 @@ def running_sum(seq):
 def sieve(n):
     """Решето Эратосфена — все простые числа до n включительно."""
     if n < 2:
-        return []
+        return iter(())
 
     sieve = [True] * (n + 1)
     sieve[0] = sieve[1] = False
@@ -45,7 +45,7 @@ def sieve(n):
             for j in range(i * i, n + 1, i):
                 sieve[j] = False
 
-    return [i for i in range(2, n + 1) if sieve[i]]
+    return (i for i in range(2, n + 1) if sieve[i])
 
 def drop_while(pred, gen):
     """Пропускает элементы пока pred истинен, потом отдаёт остальные."""
