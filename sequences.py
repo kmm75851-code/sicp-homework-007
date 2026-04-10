@@ -2,6 +2,7 @@ from functools import reduce
 from operator import add, mul
 
 
+
 def squares(seq):
     """Квадраты всех элементов. Возвращает итератор.
 
@@ -9,11 +10,10 @@ def squares(seq):
     [1, 4, 9, 16]
     >>> list(squares(()))
     []
-
+    
     Подсказка: map(lambda x: ..., seq)
     """
-    pass
-
+    return map(lambda x: x * x, seq)
 
 def only_positive(seq):
     """Только положительные числа (> 0). Возвращает итератор.
@@ -25,7 +25,7 @@ def only_positive(seq):
 
     Подсказка: filter(lambda x: ..., seq)
     """
-    pass
+    return filter(lambda x: x > 0, seq)
 
 
 def product(seq):
@@ -38,7 +38,8 @@ def product(seq):
 
     Подсказка: reduce(mul, seq)
     """
-    pass
+    return reduce(mul, seq)
+
 
 
 def sum_of_evens(seq):
@@ -54,8 +55,8 @@ def sum_of_evens(seq):
     Третий аргумент reduce — начальное значение (initial).
     Без него reduce упадёт на пустой последовательности.
     """
-    pass
-
+    return reduce(add, filter(lambda x: x % 2 == 0, seq), 0)
+    
 
 def words_longer_than(words, n):
     """Слова строго длиннее n символов. Возвращает итератор.
@@ -67,7 +68,7 @@ def words_longer_than(words, n):
 
     Подсказка: filter(lambda w: len(w) > n, words)
     """
-    pass
+    return filter(lambda w: len(w) > n, words)
 
 
 def upper_words(words):
@@ -78,7 +79,7 @@ def upper_words(words):
 
     Подсказка: map(lambda w: w.upper(), words)
     """
-    pass
+    return map(lambda x: x.upper(), words)
 
 
 def max_by_length(words):
@@ -91,7 +92,7 @@ def max_by_length(words):
 
     Подсказка: reduce(lambda a, b: a if len(a) >= len(b) else b, words)
     """
-    pass
+    return reduce(lambda a, b: a if len(a) >= len(b) else b, words)
 
 
 def pipeline(seq):
@@ -108,4 +109,5 @@ def pipeline(seq):
     Подсказка: reduce(add, map(..., filter(..., seq)), 0)
     Порядок: сначала filter (отбираем нечётные), потом map (квадраты), потом reduce (сумма).
     """
-    pass
+    return reduce(add, map(lambda x: x * x, filter(lambda f: f % 2 != 0,seq)),0)
+                  
