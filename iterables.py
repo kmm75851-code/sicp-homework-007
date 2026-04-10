@@ -125,7 +125,7 @@ class InfiniteCounter:
 
     >>> from generators import take
     >>> take(5, InfiniteCounter(start=0, step=2))
-    [0, 2, 4, 6, 8]
+    [0, 2, 4, 6,8]
     >>> take(4,InfiniteCounter(start=10, step=-1))
     [10, 9, 8, 7]
     """
